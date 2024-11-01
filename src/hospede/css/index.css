@@ -1,0 +1,171 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: white;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.container {
+  background-color: #007bff;
+  max-width: 2000px;
+  padding-top: 1%;
+  margin: 0 auto;
+  max-height: 110px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+}
+
+nav .logo {
+  font-size: 35px;
+  font-style: italic;
+  color: white;
+}
+
+nav ul {
+  padding: 10px; /* Ajuste conforme necessário */
+  position: relative;
+  right: 30px;
+}
+
+nav ul li {
+  display: inline-block;
+}
+
+nav ul li a {
+  padding: 10px 20px;
+  text-decoration: none;
+  font-size: 19px;
+  color: white;
+  transition: 0.2s;
+}
+
+nav ul li a:hover {
+  background-color: orange;
+  border-radius: 10px;
+}
+
+nav img {
+  height: 30%;
+  width: 30%;
+  object-fit: contain;
+  position: relative;
+}
+
+/*Parabens*/
+/*cade o restante? */
+.rodape {
+  background-color: #007bff;
+  color: white;
+  clear: both;
+  display: flex;
+  justify-content: center;
+  padding: 3%;
+  font-size: large;
+}
+
+.apresentacao {
+  background: url(https://triplover.com.br/wp-content/uploads/2019/09/Enjoy-Olimpia-Park-Resort.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.titulo-apresentacao {
+  font-size: 50px;
+}
+
+.texto-apresentacao {
+  text-align: left;
+  color: white;
+  position: relative;
+  font-size: 20px;
+  padding: 40px;
+  margin-left: 50px;
+  text-shadow: #000 1px 2px 1px;
+}
+.texto-apresentacao p {
+  width: 40%;
+  text-align: justify;
+}
+
+#iframe {
+  margin: 0px 0px 10px 0px;
+}
+#iframe p {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+
+.blox {
+  display: flex;
+  gap: 30px; /* Espaçamento entre os blocos */
+  height: 500px;
+  margin: 0px 10px 0px 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-bottom: 50px;
+  color: gray;
+}
+
+.card {
+  width: 500px; /* Ajuste conforme necessário */
+  padding: 18px 0px 5px 0px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  text-align: left;
+}
+
+.card img {
+  height: 300px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 10px 10px 0px 0px;
+  justify-content: space-between;
+}
+
+#preco {
+  font-family: Arial, Helvetica, sans-serif;
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+  margin: 1px;
+  padding: 10px;
+}
+
+#conteudo {
+  padding: 10px;
+}
+
+.valor {
+  font-size: 20px;
+  color: black;
+}
+
+#conteudo h3 {
+  color: black;
+  margin: 7px 0px 7px 0px;
+}
+
+.imagens img {
+  object-fit: cover;
+  height: 300px;
+  width: 33%;
+  position: relative;
+  bottom: 33px;
+  left: 3px;
+}

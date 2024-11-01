@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hóspedes Cadastrados</title>
+  </head>
+  <body>
+    <header>
+      <h1>lista de Hóspedes Cadastrados</h1>
+    </header>
+    <main>
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Endereço</th>
+            <th>Telefone</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody id="lista_Hospedes">
+          <!-- Os hóspedes serão exibidos aqui -->
+        </tbody>
+      </table>
+    </main>
+
+    <script>
+      // Função para exibir os hóspedes na tabela
+      function exibir_Hospedes() {
+        const lista_Hospedes = document.getElementById("lista_Hospedes");
+        lista_Hospedes.innerHTML = ""; // Limpa a lista_
+        // Obtendo a lista_de hóspedes do localStorage
+        const Hospedes = JSON.parse(localStorage.getItem("hospedes")) || [];
+
+        // Itera sobre os hóspedes e cria linhas para cada um
+        Hospedes.forEach((hospede) => {
+          const row = document.createElement("tr");
+
+          row.innerHTML = `
+            <td>${hospede.nome}</td>
+            <td>${hospede.cpf}</td>
+            <td>${hospede.endereco}</td>
+            <td>${hospede.telefone}</td>
+            <td>${hospede.email}</td>
+          `;
+
+          lista_Hospedes.appendChild(row);
+        });
+      }
+
+      // Chama a função ao carregar a página
+      window.onload = exibir_Hospedes;
+    </script>
+  </body>
+</html>
