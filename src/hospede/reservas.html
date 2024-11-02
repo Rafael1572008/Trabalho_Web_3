@@ -1,86 +1,88 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Reservas</title>
-    <link rel="stylesheet" type="text/css" href="../hospede/css/reservas.css" />
-  </head>
-  <body>
+<head>
+  <meta charset="UTF-8" />
+  <title>Reservas</title>
+  <link rel="stylesheet" type="text/css" href="../hospede/css/reservas.css" />
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <ul>
+        <li><a href="reservas.html">Reservas</a></li>
+        <li><a href="cadastro_hospede.html">Cadastre-se</a></li>
+        <li><a href="../funcionario/login.html">Entre</a></li>
+      </ul>
+    </nav>
+  </div>
 
-    <div class="container">
-      <nav>
-        <ul>
-          <li><a href="reservas.html">Reservas</a></li>
-          <li><a href="cadastro_hospede.html">Cadastre-se</a></li>
-          <li><a href="../funcionario/login.html">Entre</a></li>
-        </ul>
-      </nav>
-    </div>
+  <main>
+    <h1>Reservas de Quartos</h1>
+    <form id="form-reserva" autocomplete="off">
+      <label for="nome-hospede">Nome do Hóspede:</label>
+      <input type="text" id="nome-hospede" required aria-label="Nome do hóspede" />
+      <br />
+      <label for="telefone-hospede">Telefone:</label>
+      <input type="text" id="telefone-hospede" required aria-label="Telefone do hóspede" />
+      <br />
+      <label for="tipo-quarto">Tipo de Quarto:</label>
+      <select id="tipo-quarto" required aria-label="Tipo de quarto">
+        <option value="">Selecione um tipo</option>
+        <option value="Duplo Solteiro">Duplo Solteiro: R$120</option>
+        <option value="Quarto Casal">Quarto Casal: R$200</option>
+        <option value="Dormitórios">Dormitórios: R$100</option>
+        <option value="Apartamentos">Apartamentos: R$250</option>
+        <option value="Standard">Standard: R$180</option>
+        <option value="Master">Master: R$300</option>
+        <option value="Deluxe ou Master Superior">Deluxe ou Master Superior: R$400</option>
+      </select>
+      <br />
 
-    <main>
-      <h1>Reservas de Quartos</h1>
-      <form id="form-reserva" autocomplete="off">
-        <label for="nome-hospede">Nome do Hóspede:</label>
-        <input type="text" id="nome-hospede" required aria-label="Nome do hóspede" />
-        <br />
-        <label for="telefone-hospede">Telefone:</label>
-        <input type="text" id="telefone-hospede" required aria-label="Telefone do hóspede" />
-        <br />
-        <label for="tipo-quarto">Tipo de Quarto:</label>
-        <select id="tipo-quarto" required aria-label="Tipo de quarto">
-          <option value="">Selecione um tipo</option>
-          <option value="Duplo Solteiro">Duplo Solteiro: R$120</option>
-          <option value="Quarto Casal">Quarto Casal: R$200</option>
-          <option value="Dormitórios">Dormitórios: R$100</option>
-          <option value="Apartamentos">Apartamentos: R$250</option>
-          <option value="Standard">Standard: R$180</option>
-          <option value="Master">Master: R$300</option>
-          <option value="Deluxe ou Master Superior">Deluxe ou Master Superior: R$400</option>
-        </select>
-        <br />
-        <label for="check-in">Check-In:</label>
-        <input type="date" id="check-in" required aria-label="Data de check-in" />
-        <br />
-        <label for="check-out">Check-Out:</label>
-        <input type="date" id="check-out" required aria-label="Data de check-out" />
-        <br />
-        <br><br>
+      <div class="data-container">
+        <div>
+          <label for="check-in">Check-In:</label>
+          <input type="date" id="check-in" required aria-label="Data de check-in" />
+        </div>
+        <div>
+          <label for="check-out">Check-Out:</label>
+          <input type="date" id="check-out" required aria-label="Data de check-out" />
+        </div>
+      </div>
+      <br />
 
-        <h2>Serviços Extras</h2>
-        <br>
-        <fieldset>
-          <label>
-            <input type="checkbox" name="servico-extra" value="Lavanderia" aria-label="Serviço de lavanderia" />
-            Lavanderia: R$50
-          </label>
-          <br />
-          <label>
-            <input type="checkbox" name="servico-extra" value="Massagem" aria-label="Serviço de massagem" />
-            Massagem: R$120
-          </label>
-          <br />
-          <label>
-            <input type="checkbox" name="servico-extra" value="Restaurante" aria-label="Serviço de restaurante" />
-            Restaurante: R$70
-          </label>
-        </fieldset>
+      <h2>Serviços Extras</h2>
+      <fieldset>
+        <label>
+          <input type="checkbox" name="servico-extra" value="Lavanderia" aria-label="Serviço de lavanderia" />
+          Lavanderia: R$50
+        </label>
         <br />
-
-        <button type="submit">Reservar Quarto</button>
+        <label>
+          <input type="checkbox" name="servico-extra" value="Massagem" aria-label="Serviço de massagem" />
+          Massagem: R$120
+        </label>
         <br />
-      </form>
-    </main> 
+        <label>
+          <input type="checkbox" name="servico-extra" value="Restaurante" aria-label="Serviço de restaurante" />
+          Restaurante: R$70
+        </label>
+      </fieldset>
+      <br />
+      <button type="submit">Reservar Quarto</button>
+    </form>
 
-    <div class="rodape">
-      <footer>
-        <h5>
-          Hotel | Contato: (11) 1111-1111 | Endereço: Av. Avenida das Avenidas |
-          Leia nossa
-          <a href="">Política de Privacidade.</a>
-        </h5>
-      </footer>
-    </div>
-    <script src="/src/hospede/js/cadastro_hospede.js"></script>
-    <script src="../hospede/js/reservas.js"></script>
-  </body>
+    <!-- Div para exibir a lista de reservas -->
+    <div id="lista-reservas"></div>
+  </main>
+  
+  <div class="rodape">
+    <footer>
+      <h5>
+        Hotel | Contato: (11) 1111-1111 | Endereço: Av. Avenida das Avenidas |
+        Leia nossa <a href="">Política de Privacidade.</a>
+      </h5>
+    </footer>
+  </div>
+  <script src="../hospede/js/reservas.js"></script>
+</body>
 </html>

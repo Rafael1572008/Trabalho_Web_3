@@ -151,6 +151,35 @@ nav ul li a:hover {
   top: 100px;
 }
 
-.service{
-  color: #007bff;
+#check-out,
+#check-in{
+  background-color: orange;
+  color: white;
+  font-size: 15px;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  height: 25px;
+  text-align: center;
+}
+
+.data-container {
+  display: flex;
+  gap: 0px; /* Ajusta o espaçamento entre os campos */
+}
+
+.data-container div {
+  flex: 1;
+}
+
+fieldset{
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.reserva {
+  border: 1px solid blue;
+  margin: 20px;
+  padding: 10px;
+  border-radius: 5px;
 }
