@@ -1,20 +1,33 @@
-document.getElementById("form-login").addEventListener("submit", function (event) {
-  event.preventDefault();
+document.addEventListener("DOMContentLoaded", function () {
+  const urlParams = new URLSearchParams(window.location.search); //Obter dados da url, Não queriamos fazer um Venv, flask, server, etc.
+  const emailUrl = urlParams.get("username");
+  const senhaUrl = urlParams.get("password");
 
-  // Obtendo as credenciais do formulário de login
-  const emailLogin = document.getElementById("email-login").value;
-  const senhaLogin = document.getElementById("senha-login").value;
+  // Formulário
+  const emailLoginField = document.getElementById("email-login");
+  const senhaLoginField = document.getElementById("senha-login"); 
 
-  // Carregando a lista de hóspedes do localStorage
-  const lista_Hospedes = JSON.parse(localStorage.getItem("hospedes")) || [];
-
-  // Verificando se o email e a senha correspondem a algum hóspede cadastrado
-  const hospedeEncontrado = lista_Hospedes.find(hospede => hospede.email === emailLogin && hospede.senha === senhaLogin);
-
-  if (hospedeEncontrado) {
-    alert("Login realizado com sucesso!");
-    // Redirecione ou realize a ação necessária para um login bem-sucedido
-  } else {
-    alert("Email ou senha incorretos!");
+  // Prenchimento automatico no html
+  if (emailUrl && senhaUrl) {
+    emailLoginField.value = emailUrl;
+    senhaLoginField.value = senhaUrl;
   }
+
+  document.getElementById("login-form").addEventListener("submit", function (event) { //execultar quando acontecer um submit
+    event.preventDefault();  //Não recarregar
+
+    // Obter os dados do form do html
+    const emailLogin = emailLoginField.value;
+    const senhaLogin = senhaLoginField.value;
+
+    // Comparação
+    if (emailLogin === emailUrl && senhaLogin === senhaUrl) {
+      alert("Login realizado com sucesso!");
+      window.location.href = "../hospede/index.html"; // Redireciona para a página principal
+    } else {
+      alert("Email ou senha incorretos!");
+      console.log(`Email esperado: ${emailUrl}, Email digitado: ${emailLogin}`);
+      console.log(`Senha esperada: ${senhaUrl}, Senha digitada: ${senhaLogin}`);
+    }
+  });
 });

@@ -4,24 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cadastro de Hóspedes - Funcionário</title>
-
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="../hospede/css/cadastro_hospede.css"
-    />
+    <link rel="stylesheet" type="text/css" href="../hospede/css/cadastro_hospede.css" />
   </head>
   <body>
     <div class="container">
       <nav>
         <ul>
-          <li><a href="index.html"> <= Menu </a></li>
+          <li><a href="index.html">Menu</a></li>
           <li><a href="../funcionario/login.html">Entre</a></li>
         </ul>
       </nav>
     </div>
     <main>
-      <form id="hospede">
+      <!-- Corrigido o ID para 'hospedes' para coincidir com o JavaScript -->
+      <form id="hospedes">
         <label for="nome">Nome:</label>
         <input type="text" id="nome" name="nome" required />
 
@@ -35,7 +31,8 @@
         <input type="email" id="email" name="email" required />
 
         <label for="senha">Crie uma Senha:</label>
-        <input type="text" id="senha" name="senha" required />
+        <!-- Alterado o tipo para 'password' para ocultar a senha -->
+        <input type="password" id="senha" name="senha" required />
 
         <button type="submit">Cadastrar Hóspede</button>
       </form>
@@ -46,6 +43,6 @@
         Leia nossa <a href="">Política de Privacidade</a>.
       </h5>
     </footer>
-    <script src="/src/hospede/js/cadastro_hospede.js"></script>
+    <script src="../hospede/js/cadastro_hospede.js"></script>
   </body>
 </html>
