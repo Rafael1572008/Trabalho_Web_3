@@ -1,4 +1,3 @@
-<!-- reservas.html -->
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
@@ -12,16 +11,14 @@
       <nav>
         <ul>
           <li><a href="reservas.html">Reservas</a></li>
-          <li><a href="servicos.html">Serviços</a></li>
           <li><a href="cadastro_hospede.html">Cadastre-se</a></li>
           <li><a href="../funcionario/login.html">Entre</a></li>
         </ul>
       </nav>
     </div>
 
-    <h1>Reservas de Quartos</h1>
-
     <main>
+      <h1>Reservas de Quartos</h1>
       <form id="form-reserva" autocomplete="off">
         <label for="nome-hospede">Nome do Hóspede:</label>
         <input type="text" id="nome-hospede" required aria-label="Nome do hóspede" />
@@ -32,19 +29,14 @@
         <label for="tipo-quarto">Tipo de Quarto:</label>
         <select id="tipo-quarto" required aria-label="Tipo de quarto">
           <option value="">Selecione um tipo</option>
-          <option value="Duplo Solteiro">Duplo Solteiro</option>
-          <option value="Quarto Casal">Quarto Casal</option>
-          <option value="Dormitórios">Dormitórios</option>
-          <option value="Apartamentos">Apartamentos</option>
-          <option value="Standard">Standard</option>
-          <option value="Master">Master</option>
-          <option value="Deluxe ou Master Superior">
-            Deluxe ou Master Superior
-          </option>
+          <option value="Duplo Solteiro">Duplo Solteiro: R$120</option>
+          <option value="Quarto Casal">Quarto Casal: R$200</option>
+          <option value="Dormitórios">Dormitórios: R$100</option>
+          <option value="Apartamentos">Apartamentos: R$250</option>
+          <option value="Standard">Standard: R$180</option>
+          <option value="Master">Master: R$300</option>
+          <option value="Deluxe ou Master Superior">Deluxe ou Master Superior: R$400</option>
         </select>
-        <br />
-        <label for="numero-quarto">Número do Quarto:</label>
-        <input type="text" id="numero-quarto" required aria-label="Número do quarto" />
         <br />
         <label for="check-in">Check-In:</label>
         <input type="date" id="check-in" required aria-label="Data de check-in" />
@@ -52,49 +44,41 @@
         <label for="check-out">Check-Out:</label>
         <input type="date" id="check-out" required aria-label="Data de check-out" />
         <br />
+        <br><br>
+
+        <h2>Serviços Extras</h2>
+        <fieldset>
+          <label>
+            <input type="checkbox" name="servico-extra" value="Lavanderia" aria-label="Serviço de lavanderia" />
+            Lavanderia: R$50
+          </label>
+          <br />
+          <label>
+            <input type="checkbox" name="servico-extra" value="Massagem" aria-label="Serviço de massagem" />
+            Massagem: R$120
+          </label>
+          <br />
+          <label>
+            <input type="checkbox" name="servico-extra" value="Restaurante" aria-label="Serviço de restaurante" />
+            Restaurante: R$70
+          </label>
+        </fieldset>
+        <br />
+
         <button type="submit">Reservar Quarto</button>
+        <br />
       </form>
     </main> 
 
-  <div id="lista">
-    <h3>Lista de Reservas</h3>
-    <ul id="lista-reservas"></ul>
-    <br>
-    <button id="limpar-reservas">Limpar Reservas</button>
-  </div>
-
-  <div class="service">
-    <div>
-        <h2>Massagem</h2>
-        <p>R$ 120,00</p>
+    <div class="rodape">
+      <footer>
+        <h5>
+          Hotel | Contato: (11) 1111-1111 | Endereço: Av. Avenida das Avenidas |
+          Leia nossa
+          <a href="">Política de Privacidade.</a>
+        </h5>
+      </footer>
     </div>
-    <button onclick="adicionarAoCarrinho('Massagem Relaxante', 120)">Adicionar ao Carrinho</button>
-</div>
-
-<div class="service">
-    <div>
-        <h2>Serviço de Lavanderia</h2>
-        <p>R$ 30,00</p>
-    </div>
-    <button onclick="adicionarAoCarrinho('Serviço de Lavanderia', 30)">Adicionar ao Carrinho</button>
-</div>
-
-<div class="service">
-    <div>
-        <h2>Restaurante</h2>
-        <p>R$ 50,00</p>
-    </div>
-    <button onclick="adicionarAoCarrinho('Aluguel de Bicicleta', 50)">Adicionar ao Carrinho</button>
-</div>
-</div>
-
-
-    <footer>
-      <h5>
-        Hotel | Contato: (11) 1111-1111 | Endereço: Av. Avenida das Avenidas |
-        Leia nossa <a href="">Política de Privacidade</a>.
-      </h5>
-    </footer>
     <script src="/src/hospede/js/cadastro_hospede.js"></script>
     <script src="../hospede/js/reservas.js"></script>
   </body>
