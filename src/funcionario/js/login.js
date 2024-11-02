@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Comparação
     if (emailLogin === emailUrl && senhaLogin === senhaUrl) {
       alert("Login realizado com sucesso!");
-      window.location.href = "../hospede/index.html"; // Redireciona para a página principal
+      window.location.href = "../hospede/hospede.html"; // Redireciona para a página principal
     } else {
       alert("Email ou senha incorretos!");
       console.log(`Email esperado: ${emailUrl}, Email digitado: ${emailLogin}`);
