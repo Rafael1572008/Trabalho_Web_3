@@ -1,17 +1,14 @@
-// js/reservas.js
-
-/*esperar par que todo html seja carregado */
 document.addEventListener("DOMContentLoaded", function () {
   // obter formulário e sua lista
   const formReserva = document.getElementById("form-reserva");
   const listaReservas = document.getElementById("lista-reservas");
 
-  /*obter a lista anterior */
+  // obter a lista anterior
   const reservas = JSON.parse(localStorage.getItem("reservas")) || [];
 
   atualizarListaReservas();
 
-  /* precos */
+  // preços dos quartos
   const preco = {
     "Duplo Solteiro": 150,
     "Quarto Casal": 200,
@@ -22,43 +19,65 @@ document.addEventListener("DOMContentLoaded", function () {
     "Deluxe ou Master Superior": 400,
   };
 
-  // imprede o carregamento da pagina ao enviar
+  // preços dos serviços extras
+  const precoServicosExtras = {
+    Lavanderia: 50,
+    Massagem: 120,
+    Restaurante: 70,
+  };
+
+  // impede o carregamento da página ao enviar o formulário
   formReserva.addEventListener("submit", function (event) {
     event.preventDefault();
 
-    /* Captura dos elemento */
+    // captura dos elementos
     const nomeHospede = formReserva.elements[0].value;
     const telefoneHospede = formReserva.elements[1].value;
     const tipoQuarto = formReserva.elements[2].value;
-    const numeroQuarto = formReserva.elements[3].value;
-    const checkIn = formReserva.elements[4].value;
-    const checkOut = formReserva.elements[5].value;
+    const checkIn = formReserva.elements[3].value;
+    const checkOut = formReserva.elements[4].value;
 
-    // transfoma em milisegundos e dps converte para dias
+    // captura dos serviços extras selecionados
+    const servicosExtrasSelecionados = Array.from(
+      formReserva.querySelectorAll('input[name="servico-extra"]:checked')
+    ).map((checkbox) => checkbox.value);
+
+    // calcula a quantidade de dias
     const dias = Math.ceil(
       Math.abs(new Date(checkOut) - new Date(checkIn)) / (1000 * 60 * 60 * 24)
     );
 
-    const custot = (preco[tipoQuarto] || 0) * dias;
+    // calcula o custo total do quarto
+    const custoQuarto = (preco[tipoQuarto] || 0) * dias;
 
-    // é como se fosse um append do python
+    // calcula o custo total dos serviços extras selecionados
+    const custoServicosExtras = servicosExtrasSelecionados.reduce(
+      (total, servico) => total + (precoServicosExtras[servico] || 0),
+      0
+    );
+
+    // custo total da reserva, incluindo quarto e serviços extras
+    const custoTotal = custoQuarto + custoServicosExtras;
+
+    // adiciona a reserva à lista de reservas
     reservas.push({
       nomeHospede,
       telefoneHospede,
       tipoQuarto,
-      numeroQuarto,
       checkIn,
       checkOut,
-      custot,
+      dias,
+      servicosExtrasSelecionados,
+      custoTotal,
     });
     localStorage.setItem("reservas", JSON.stringify(reservas));
 
-    // atualizar lista
+    // atualiza a lista de reservas e reseta o formulário
     atualizarListaReservas();
     formReserva.reset();
   });
 
-  // Limpa a lista existente
+  // função para atualizar a lista de reservas
   function atualizarListaReservas() {
     listaReservas.innerHTML = "";
 
@@ -79,10 +98,6 @@ document.addEventListener("DOMContentLoaded", function () {
       tipo.textContent = `Tipo de Quarto: ${reserva.tipoQuarto}`;
       div.appendChild(tipo);
 
-      const numero = document.createElement("p");
-      numero.textContent = `Número do Quarto: ${reserva.numeroQuarto}`;
-      div.appendChild(numero);
-
       const checkin = document.createElement("p");
       checkin.textContent = `Check-In: ${reserva.checkIn}`;
       div.appendChild(checkin);
@@ -91,23 +106,24 @@ document.addEventListener("DOMContentLoaded", function () {
       checkout.textContent = `Check-Out: ${reserva.checkOut}`;
       div.appendChild(checkout);
 
+      const dias = document.createElement("p");
+      dias.textContent = `Dias de estadia: ${reserva.dias}`;
+      div.appendChild(dias);
+
+      const servicosExtras = document.createElement("p");
+      servicosExtras.textContent = `Serviços Extras: ${
+        reserva.servicosExtrasSelecionados.length > 0
+          ? reserva.servicosExtrasSelecionados.join(", ")
+          : "Nenhum"
+      }`;
+      div.appendChild(servicosExtras);
+
       const custo = document.createElement("p");
-      checkout.textContent = `Custo: ${reserva.custot}`;
-      div.append(custo);
+      custo.textContent = `Custo Total: R$${reserva.custoTotal.toFixed(2)}`;
+      div.appendChild(custo);
 
       // Adiciona a reserva à lista
       listaReservas.appendChild(div);
     });
   }
-
-  // Função para limpar as reservas
-  function limparReservas() {
-    localStorage.removeItem("reservas"); // Limpa as reservas do localStorage
-    reservas.length = 0; // Limpa o array de reservas
-    atualizarListaReservas(); // Atualiza a lista na interface
-  }
-
-  // Chamar a função
-  const botaoLimpar = document.getElementById("limpar-reservas");
-  botaoLimpar.addEventListener("click", limparReservas);
 });
