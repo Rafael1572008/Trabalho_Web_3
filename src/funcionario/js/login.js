@@ -1,33 +1,35 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const urlParams = new URLSearchParams(window.location.search); //Obter dados da url, Não queriamos fazer um Venv, flask, server, etc.
-  const emailUrl = urlParams.get("username");
-  const senhaUrl = urlParams.get("password");
-
-  // Formulário
+  // Formulário de login
   const emailLoginField = document.getElementById("email-login");
-  const senhaLoginField = document.getElementById("senha-login"); 
+  const senhaLoginField = document.getElementById("senha-login");
 
-  // Prenchimento automatico no html
-  if (emailUrl && senhaUrl) {
-    emailLoginField.value = emailUrl;
-    senhaLoginField.value = senhaUrl;
-  }
+  document.getElementById("login-form").addEventListener("submit", function (event) {
+    event.preventDefault();
 
-  document.getElementById("login-form").addEventListener("submit", function (event) { //execultar quando acontecer um submit
-    event.preventDefault();  //Não recarregar
+    // Obter os dados do formulário de login e remover espaços em branco
+    const emailLogin = emailLoginField.value.trim();
+    const senhaLogin = senhaLoginField.value.trim();
 
-    // Obter os dados do form do html
-    const emailLogin = emailLoginField.value;
-    const senhaLogin = senhaLoginField.value;
+    // Exibe no console o email e a senha digitados
+    console.log("Email digitado:", emailLogin);
+    console.log("Senha digitada:", senhaLogin);
 
-    // Comparação
-    if (emailLogin === emailUrl && senhaLogin === senhaUrl) {
+    // Recupera a lista de hóspedes do localStorage
+    const lista_Hospedes = JSON.parse(localStorage.getItem("hospedes")) || [];
+    console.log("Lista de hóspedes no localStorage:", lista_Hospedes);
+
+    // Verifica se o hóspede existe
+    const hospedeEncontrado = lista_Hospedes.find(
+      (hospede) => hospede.email === emailLogin && hospede.senha === senhaLogin
+    );
+
+    if (hospedeEncontrado) {
       alert("Login realizado com sucesso!");
       window.location.href = "../hospede/index.html"; // Redireciona para a página principal
     } else {
       alert("Email ou senha incorretos!");
-      console.log(`Email esperado: ${emailUrl}, Email digitado: ${emailLogin}`);
-      console.log(`Senha esperada: ${senhaUrl}, Senha digitada: ${senhaLogin}`);
+      console.log("Email ou senha não correspondem a nenhum hóspede cadastrado.");
+      console.log(`${lista_Hospedes}`)
     }
   });
 });
