@@ -4,9 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cadastro de Quartos - Funcionário</title>
-    <link rel="stylesheet" type="text/css" href="../hospede/css/index.css" />
+    <link rel="stylesheet" type="text/css" href="../funcionario/css/cadastro_quartos.css" />
   </head>
   <body>
+    <div class="container">
+      <nav>
+        <ul>
+          <li><a href="../hospede/index.html">Sair</a></li>
+        </ul>
+      </nav>
+    </div>
     <header>
       <h1>Cadastro de Quartos</h1>
     </header>
@@ -14,7 +21,7 @@
       <form id="form-cadastro-quarto">
         <label for="numero">Número do Quarto:</label>
         <input type="text" id="numero" name="numero" required />
-
+        <br><br><br>
         <label for="tipo">Tipo de Quarto:</label>
         <select id="tipo" name="tipo">
           <option value="Duplo Solteiro">Duplo Solteiro</option>
@@ -25,13 +32,22 @@
           <option value="Master">Master</option>
           <option value="Deluxe">Deluxe ou Master Superior</option>
         </select>
-
+        <br><br><br>
         <label for="preco">Preço por Noite:</label>
         <input type="number" id="preco" name="preco" required step="0.01" />
-
+        <br><br><br>
         <button type="submit">Cadastrar Quarto</button>
       </form>
     </main>
+    <div class="rodape">
+      <footer>
+        <h5>
+          Hotel | Contato: (11) 1111-1111 | Endereço: Av. Avenida das Avenidas |
+          Leia nossa
+          <a href="">Política de Privacidade.</a>
+        </h5>
+      </footer>
+    </div>
     <script src="js/scripts-funcionario.js"></script>
   </body>
 </html>
