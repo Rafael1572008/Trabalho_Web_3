@@ -25,5 +25,5 @@ document.getElementById("hospedes").addEventListener("submit", function (event) 
   alert("Hóspede cadastrado com sucesso!");
 
   // Redirecionando para a página de login
-
+  window.location.href = "../funcionario/login.html";
 });

@@ -5,62 +5,65 @@ document.addEventListener("DOMContentLoaded", function () {
   const reservas = JSON.parse(localStorage.getItem("reservas")) || [];
   atualizarListaReservas();
 
-  const preco = {
-    "Duplo Solteiro": 120,
-    "Quarto Casal": 200,
-    Dormitórios: 100,
-    Apartamentos: 250,
-    Standard: 180,
-    Master: 300,
-    "Deluxe ou Master Superior": 400,
-  };
+  // Verifique se o formulário existe antes de adicionar os ouvintes de eventos
+  if (formReserva) {
+    const preco = {
+      "Duplo Solteiro": 120,
+      "Quarto Casal": 200,
+      Dormitórios: 100,
+      Apartamentos: 250,
+      Standard: 180,
+      Master: 300,
+      "Deluxe ou Master Superior": 400,
+    };
 
-  const precoServicosExtras = {
-    Lavanderia: 50,
-    Massagem: 120,
-    Restaurante: 70,
-  };
+    const precoServicosExtras = {
+      Lavanderia: 50,
+      Massagem: 120,
+      Restaurante: 70,
+    };
 
-  formReserva.addEventListener("submit", function (event) {
-    event.preventDefault();
+    formReserva.addEventListener("submit", function (event) {
+      event.preventDefault();
 
-    const nomeHospede = formReserva.elements[0].value;
-    const telefoneHospede = formReserva.elements[1].value;
-    const tipoQuarto = formReserva.elements[2].value;
-    const checkIn = formReserva.elements[3].value;
-    const checkOut = formReserva.elements[4].value;
+      const nomeHospede = formReserva.elements[0].value;
+      const telefoneHospede = formReserva.elements[1].value;
+      const tipoQuarto = formReserva.elements[2].value;
+      const checkIn = formReserva.elements[3].value;
+      const checkOut = formReserva.elements[4].value;
 
-    const servicosExtrasSelecionados = Array.from(
-      formReserva.querySelectorAll('input[name="servico-extra"]:checked')
-    ).map((checkbox) => checkbox.value);
+      const servicosExtrasSelecionados = Array.from(
+        formReserva.querySelectorAll('input[name="servico-extra"]:checked')
+      ).map((checkbox) => checkbox.value);
 
-    const dias = Math.ceil(
-      Math.abs(new Date(checkOut) - new Date(checkIn)) / (1000 * 60 * 60 * 24)
-    );
+      const dias = Math.ceil(
+        Math.abs(new Date(checkOut) - new Date(checkIn)) / (1000 * 60 * 60 * 24)
+      );
 
-    const custoQuarto = (preco[tipoQuarto] || 0) * dias;
-    const custoServicosExtras = servicosExtrasSelecionados.reduce(
-      (total, servico) => total + (precoServicosExtras[servico] || 0),
-      0
-    );
+      const custoQuarto = (preco[tipoQuarto] || 0) * dias;
+      const custoServicosExtras = servicosExtrasSelecionados.reduce(
+        (total, servico) => total + (precoServicosExtras[servico] || 0),
+        0
+      );
 
-    const custoTotal = custoQuarto + custoServicosExtras;
+      const custoTotal = custoQuarto + custoServicosExtras;
 
-    reservas.push({
-      nomeHospede,
-      telefoneHospede,
-      tipoQuarto,
-      checkIn,
-      checkOut,
-      dias,
-      servicosExtrasSelecionados,
-      custoTotal,
+      reservas.push({
+        nomeHospede,
+        telefoneHospede,
+        tipoQuarto,
+        checkIn,
+        checkOut,
+        dias,
+        servicosExtrasSelecionados,
+        custoTotal,
+      });
+      localStorage.setItem("reservas", JSON.stringify(reservas));
+
+      atualizarListaReservas();
+      formReserva.reset();
     });
-    localStorage.setItem("reservas", JSON.stringify(reservas));
-
-    atualizarListaReservas();
-    formReserva.reset();
-  });
+  }
 
   function atualizarListaReservas() {
     listaReservas.innerHTML = "";
