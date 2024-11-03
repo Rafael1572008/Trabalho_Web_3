@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (hospedeEncontrado) {
       alert("Login realizado com sucesso!");
-      window.location.href = "../hospede/index.html"; // Redireciona para a página principal
+      window.location.href = "../hospede/hospede.html"; // Redireciona para a página principal
     } else {
       alert("Email ou senha incorretos!");
       console.log("Email ou senha não correspondem a nenhum hóspede cadastrado.");
