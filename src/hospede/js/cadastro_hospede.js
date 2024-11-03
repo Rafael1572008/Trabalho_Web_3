@@ -6,10 +6,11 @@ document.getElementById("hospedes").addEventListener("submit", function (event) 
   const cpf = document.getElementById("cpf").value.trim();
   const telefone = document.getElementById("telefone").value.trim();
   const email = document.getElementById("email").value.trim();
+  const endereco = document.getElementById("endereco").value.trim();
   const senha = document.getElementById("senha").value.trim();
 
   // Criando o objeto do hóspede
-  const hospede = { nome, cpf, telefone, email, senha };
+  const hospede = { nome, cpf, telefone, email, endereco, senha };
 
   // Salvando o hóspede no localStorage
   let lista_Hospedes = JSON.parse(localStorage.getItem("hospedes")) || [];
