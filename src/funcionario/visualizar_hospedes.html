@@ -14,10 +14,12 @@
         </ul>
       </nav>
     </div>
+    <br><br><br>
+    <main>
     <header>
       <h1>Lista de Hóspedes Cadastrados</h1>
     </header>
-    <main>
+    <br><br><br>
       <table>
         <thead>
           <tr>
@@ -29,9 +31,11 @@
           </tr>
         </thead>
         <tbody id="lista_Hospedes">
+          <!-- Os hóspedes serão exibidos aqui -->
         </tbody>
       </table>
     </main>
+    <br><br><br>
 
     <script>
       // Função para exibir os hóspedes na tabela
@@ -51,15 +55,16 @@
             <td>${hospede.telefone}</td>
             <td>${hospede.email}</td>
             <td>${hospede.endereco}</td>
+            <br><br>
           `;
 
           lista_Hospedes.appendChild(row);
         });
       }
 
+      // Chama a função ao carregar a página
       window.onload = exibir_Hospedes;
     </script>
-    
     <div class="rodape">
       <footer>
         <h5>
