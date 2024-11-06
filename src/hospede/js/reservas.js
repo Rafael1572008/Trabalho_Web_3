@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const reservas = JSON.parse(localStorage.getItem("reservas")) || [];
   atualizarListaReservas();
 
-  // Verifique se o formulário existe antes de adicionar os ouvintes de eventos
   if (formReserva) {
     const preco = {
       "Duplo Solteiro": 120,
@@ -26,11 +25,11 @@ document.addEventListener("DOMContentLoaded", function () {
     formReserva.addEventListener("submit", function (event) {
       event.preventDefault();
 
-      const nomeHospede = formReserva.elements[0].value;
-      const telefoneHospede = formReserva.elements[1].value;
-      const tipoQuarto = formReserva.elements[2].value;
-      const checkIn = formReserva.elements[3].value;
-      const checkOut = formReserva.elements[4].value;
+      const nomeHospede = formReserva["nomeHospede"].value;
+      const telefoneHospede = formReserva["telefoneHospede"].value;
+      const tipoQuarto = formReserva["tipoQuarto"].value;
+      const checkIn = formReserva["checkIn"].value;
+      const checkOut = formReserva["checkOut"].value;
 
       const servicosExtrasSelecionados = Array.from(
         formReserva.querySelectorAll('input[name="servico-extra"]:checked')
@@ -73,6 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
       div.classList.add("reserva");
 
       const hospede = document.createElement("p");
+      hospede.classList.add("nome-hospede");
       hospede.textContent = `Hóspede: ${reserva.nomeHospede}`;
       div.appendChild(hospede);
 
@@ -108,6 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
       custo.textContent = `Custo Total: R$${reserva.custoTotal.toFixed(2)}`;
       div.appendChild(custo);
 
-    });  
+      listaReservas.appendChild(div); // Adiciona a reserva à lista de reservas
+    });
   }
 });

@@ -14,14 +14,19 @@ if (reservas.length > 0) {
 
     // Define o conteúdo da reserva
     divReserva.innerHTML = `
-      <h2>Reserva de ${reserva.nomeHospede}</h2>
-      <p><strong>Telefone:</strong> ${reserva.telefoneHospede}</p>
-      <p><strong>Tipo de Quarto:</strong> ${reserva.tipoQuarto}</p>
-      <p><strong>Check-in:</strong> ${reserva.checkIn}</p>
-      <p><strong>Check-out:</strong> ${reserva.checkOut}</p>
-      <p><strong>Dias:</strong> ${reserva.dias}</p>
-      <p><strong>Serviços Extras:</strong> ${reserva.servicosExtrasSelecionados.join(", ")}</p>
-      <p><strong>Custo Total:</strong> R$ ${reserva.custoTotal.toFixed(2)}</p>
+      <div id="reser">
+        <div id="within">
+          <p id="name">Reserva de ${reserva.nomeHospede}</p>
+          <p><strong>Telefone:</strong> ${reserva.telefoneHospede}</p>
+          <p><strong>Tipo de Quarto:</strong> ${reserva.tipoQuarto}</p>
+          <p><strong>Check-in:</strong> ${reserva.checkIn}</p>
+          <p><strong>Check-out:</strong> ${reserva.checkOut}</p>
+          <p><strong>Dias:</strong> ${reserva.dias}</p>
+          <p><strong>Serviços Extras:</strong> ${reserva.servicosExtrasSelecionados.join(", ")}</p>
+          <p><strong>Custo Total:</strong> R$ ${reserva.custoTotal.toFixed(2)}</p>
+        </div>
+      </div>
+      <br>
     `;
 
     // Adiciona o div ao contêiner principal

@@ -21,7 +21,6 @@
     padding: 50px;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    position: relative;
     top: 100px;
   }
 
@@ -84,4 +83,21 @@
   .rodape a:hover {
     color: orange;
   }
+
+  #reser{
+    border: 1px solid orange; 
+    border-radius: 10px;
+  }
+
+  #name{
+    color: orange;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 2px;
+  }
   
+  #within{    
+    padding: 2px;
+    letter-spacing: 1px;
+  }
