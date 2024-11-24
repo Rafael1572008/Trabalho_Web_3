@@ -1,3 +1,19 @@
-Coloquem aqui os sites que ultilizaram
+Coloquem aqui os sites que ultilizaram (colocaremos na documentação)
 
 ragex/Função regular: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+git: https://github.com/Rafael1572008/Trabalho_Web_3
