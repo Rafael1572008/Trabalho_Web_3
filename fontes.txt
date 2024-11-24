@@ -1,0 +1,3 @@
+Coloquem aqui os sites que ultilizaram
+
+ragex/Função regular: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions
