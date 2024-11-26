@@ -2,6 +2,7 @@ Coloquem aqui os sites que ultilizaram (colocaremos na documentação)
 
 ragex/Função regular: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions
 
+Nominatim documentação: https://nominatim.org/release-docs/latest/
 
 
 
