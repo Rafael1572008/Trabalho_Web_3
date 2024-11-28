@@ -5,23 +5,39 @@ document.addEventListener("DOMContentLoaded", function () {
   const reservas = JSON.parse(localStorage.getItem("reservas")) || [];
   atualizarListaReservas();
 
+  // Classe Reserva
+  class Reserva {
+    constructor(nomeHospede, telefoneHospede, tipoQuarto, checkIn, checkOut, dias, servicosExtrasSelecionados, custoTotal) {
+      this._nomeHospede = nomeHospede;
+      this._telefoneHospede = telefoneHospede;
+      this._tipoQuarto = tipoQuarto;
+      this._checkIn = checkIn;
+      this._checkOut = checkOut;
+      this._dias = dias;
+      this._servicosExtrasSelecionados = servicosExtrasSelecionados;
+      this._custoTotal = custoTotal;
+    }
+  }
+
+  // Preços dos quartos
+  const preco = {
+    "Duplo Solteiro": 120,
+    "Quarto Casal": 200,
+    Dormitórios: 100,
+    Apartamentos: 250,
+    Standard: 180,
+    Master: 300,
+    "Deluxe ou Master Superior": 400,
+  };
+
+  // Preços dos serviços extras
+  const precoServicosExtras = {
+    Lavanderia: 50,
+    Massagem: 120,
+    Restaurante: 70,
+  };
+
   if (formReserva) {
-    const preco = {
-      "Duplo Solteiro": 120,
-      "Quarto Casal": 200,
-      Dormitórios: 100,
-      Apartamentos: 250,
-      Standard: 180,
-      Master: 300,
-      "Deluxe ou Master Superior": 400,
-    };
-
-    const precoServicosExtras = {
-      Lavanderia: 50,
-      Massagem: 120,
-      Restaurante: 70,
-    };
-
     formReserva.addEventListener("submit", function (event) {
       event.preventDefault();
 
@@ -47,7 +63,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const custoTotal = custoQuarto + custoServicosExtras;
 
-      reservas.push({
+      // Criando a reserva usando a classe
+      const reserva = new Reserva(
         nomeHospede,
         telefoneHospede,
         tipoQuarto,
@@ -55,8 +72,11 @@ document.addEventListener("DOMContentLoaded", function () {
         checkOut,
         dias,
         servicosExtrasSelecionados,
-        custoTotal,
-      });
+        custoTotal
+      );
+
+      // Adicionando a reserva ao array de reservas
+      reservas.push(reserva);
       localStorage.setItem("reservas", JSON.stringify(reservas));
 
       atualizarListaReservas();
@@ -64,6 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // Função para atualizar a lista de reservas na página
   function atualizarListaReservas() {
     listaReservas.innerHTML = "";
 
@@ -73,39 +94,39 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const hospede = document.createElement("p");
       hospede.classList.add("nome-hospede");
-      hospede.textContent = `Hóspede: ${reserva.nomeHospede}`;
+      hospede.textContent = `Hóspede: ${reserva._nomeHospede}`;
       div.appendChild(hospede);
 
       const telefone = document.createElement("p");
-      telefone.textContent = `Telefone: ${reserva.telefoneHospede}`;
+      telefone.textContent = `Telefone: ${reserva._telefoneHospede}`;
       div.appendChild(telefone);
 
       const tipo = document.createElement("p");
-      tipo.textContent = `Tipo de Quarto: ${reserva.tipoQuarto}`;
+      tipo.textContent = `Tipo de Quarto: ${reserva._tipoQuarto}`;
       div.appendChild(tipo);
 
       const checkin = document.createElement("p");
-      checkin.textContent = `Check-In: ${reserva.checkIn}`;
+      checkin.textContent = `Check-In: ${reserva._checkIn}`;
       div.appendChild(checkin);
 
       const checkout = document.createElement("p");
-      checkout.textContent = `Check-Out: ${reserva.checkOut}`;
+      checkout.textContent = `Check-Out: ${reserva._checkOut}`;
       div.appendChild(checkout);
 
       const dias = document.createElement("p");
-      dias.textContent = `Dias de estadia: ${reserva.dias}`;
+      dias.textContent = `Dias de estadia: ${reserva._dias}`;
       div.appendChild(dias);
 
       const servicosExtras = document.createElement("p");
       servicosExtras.textContent = `Serviços Extras: ${
-        reserva.servicosExtrasSelecionados.length > 0
-          ? reserva.servicosExtrasSelecionados.join(", ")
+        reserva._servicosExtrasSelecionados.length > 0
+          ? reserva._servicosExtrasSelecionados.join(", ")
           : "Nenhum"
       }`;
       div.appendChild(servicosExtras);
 
       const custo = document.createElement("p");
-      custo.textContent = `Custo Total: R$${reserva.custoTotal.toFixed(2)}`;
+      custo.textContent = `Custo Total: R$${reserva._custoTotal.toFixed(2)}`;
       div.appendChild(custo);
 
       listaReservas.appendChild(div); // Adiciona a reserva à lista de reservas

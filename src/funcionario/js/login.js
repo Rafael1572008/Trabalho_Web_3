@@ -14,13 +14,20 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("Email digitado:", emailLogin);
     console.log("Senha digitada:", senhaLogin);
 
+    class Adm {
+      constructor(email, password) {
+        this._email = email;
+        this._password = password;
+      }
+    }
+
     // Lista de administradores
     const lista_Adm = [
-      { nome: "Kaio@gmail.com", password: "12345" },
-      { nome: "Rafael@gmail.com", password: "12345" },
-      { nome: "Sara@gmail.com", password: "12345" },
-      { nome: "Mateus@gmail.com", password: "12345" },
-      { nome: "Claudete@gmail.com", password: "12345" } 
+      new Adm("Kaio@gmail.com", "12345"),
+      new Adm("Rafael@gmail.com", "12345"),
+      new Adm("Sara@gmail.com", "12345"),
+      new Adm("Mateus@gmail.com", "12345"),
+      new Adm("Claudete@gmail.com", "12345")
     ];
 
     // Recupera a lista de hóspedes do localStorage
@@ -32,14 +39,14 @@ document.addEventListener("DOMContentLoaded", function () {
       (hospede) => hospede.email === emailLogin && hospede.senha === senhaLogin
     );
 
-    // Verifica primeiro para hóspedes, dps verificar adm
+    // Verifica primeiro para hóspedes, depois verifica administradores
     if (hospedeEncontrado) {
       alert("Login efetuado com sucesso");
       window.location.href = "../hospede/hospede.html"; // Redireciona para a página do hóspede
     } else {
       // Se não encontrar, verifica na lista de administradores
       const adminEncontrado = lista_Adm.find(
-        (adm) => adm.nome === emailLogin && adm.password.toString() === senhaLogin
+        (adm) => adm._email === emailLogin && adm._password.toString() === senhaLogin
       );
 
       // Resultado
