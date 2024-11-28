@@ -4,6 +4,9 @@ ragex/Função regular: https://developer.mozilla.org/en-US/docs/Web/JavaScript/
 
 Nominatim documentação: https://nominatim.org/release-docs/latest/
 
+Orientação obejeto: https://www.freecodecamp.org/portuguese/news/programacao-orientada-a-objetos-em-javascript-explicada-com-exemplos/
+
+Encapsulamento (get e set, aula 47): https://www.youtube.com/watch?v=r4sFW7gtkTw&list=PLnex8IkmReXxZEXje06kW1uCwm5iC8M_Z&index=45
 
 
 
