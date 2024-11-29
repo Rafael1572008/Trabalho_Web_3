@@ -104,6 +104,12 @@ document.getElementById("hospedes").addEventListener("submit", async function (e
     }
   }
 
+  function validarSenha(senha) {   //Verifcar senha (Tem que ser forte)
+    return senha.length >= 8 && /[A-Z]/.test(senha) && /[a-z]/.test(senha) && /\d/.test(senha) &&
+           /[!@#$%^&*(),.?":{}|<>]/.test(senha);  
+}
+
+
   // Executando validações
   if (!validarNOME(nome)) {
     alert("Nome Inválido! Tente novamente");
@@ -130,6 +136,11 @@ document.getElementById("hospedes").addEventListener("submit", async function (e
 
   if (!(await validarEndereco(endereco))) {
     alert("Endereço Inválido! Tente novamente");
+    return;
+  }
+
+  if(!validarSenha(senha)){
+    alert("Senha Fraça. Ela deve conter: 8 digitos, letra Grande, letra pequena, numero, caracter especial")
     return;
   }
 

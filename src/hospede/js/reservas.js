@@ -47,12 +47,47 @@ document.addEventListener("DOMContentLoaded", function () {
       const checkIn = formReserva["checkIn"].value;
       const checkOut = formReserva["checkOut"].value;
 
+
+
+      // Verificações
+      function validarNOME(nomeHospede) {
+        const nomev = nomeHospede.replace(/[^a-zA-Zá-úÁ-Ú\s]/g, '');
+        return nomev === nomeHospede;
+      }
+
+      function validarTelefone(telefoneHospede) {
+        const tel = telefoneHospede.replace(/[^0-9]/g, '');
+        return tel.length === 10 || tel.length === 11;
+      }
+
+
+      // Execultando os verificadoderes
+      if (!validarNOME(nomeHospede)) {
+        alert("Nome Inválido! Tente novamente");
+        return;
+      }
+
+      if (!validarTelefone(telefoneHospede)) {
+        alert("Telefone Inválido! Tente novamente");
+        return;
+      }
+
+      const dataCheckIn = new Date(checkIn);
+      const dataCheckOut = new Date(checkOut);
+
+      if (dataCheckOut <= dataCheckIn) {
+        alert("A data de check-out deve ser posterior à data de check-in.");
+        return;
+      }
+
+
+
       const servicosExtrasSelecionados = Array.from(
         formReserva.querySelectorAll('input[name="servico-extra"]:checked')
       ).map((checkbox) => checkbox.value);
 
       const dias = Math.ceil(
-        Math.abs(new Date(checkOut) - new Date(checkIn)) / (1000 * 60 * 60 * 24)
+        Math.abs(dataCheckOut - dataCheckIn) / (1000 * 60 * 60 * 24)
       );
 
       const custoQuarto = (preco[tipoQuarto] || 0) * dias;

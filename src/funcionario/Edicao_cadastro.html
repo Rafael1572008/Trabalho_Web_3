@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Editar Hóspede</title>
+  </head>
+  <body>
+    <h1>Escolha o Hóspede para Editar</h1>
+
+    <!-- Lista de hóspedes -->
+    <ul id="lista-hospedes"></ul>
+
+    <h1>Editar Cadastro de Hóspede</h1>
+    <form id="form-editar" style="display:none;">
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" name="nome" required />
+      <br />
+      <label for="cpf">CPF:</label>
+      <input type="text" id="cpf" name="cpf" required disabled />
+      <br />
+      <label for="telefone">Telefone:</label>
+      <input type="text" id="telefone" name="telefone" required />
+      <br />
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required />
+      <br />
+      <label for="endereco">Endereço:</label>
+      <input type="text" id="endereco" name="endereco" required />
+      <br />
+      <label for="senha">Senha:</label>
+      <input type="password" id="senha" name="senha" required />
+      <br />
+      <button type="submit">Salvar Alterações</button>
+    </form>
+
+    <script src="./js/Edicao_cadastro.js"></script>
+  </body>
+</html>

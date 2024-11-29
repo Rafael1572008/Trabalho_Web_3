@@ -16,14 +16,14 @@ if (reservas.length > 0) {
     divReserva.innerHTML = `
       <div id="reser">
         <div id="within">
-          <p id="name">Reserva de ${reserva.nomeHospede}</p>
-          <p><strong>Telefone:</strong> ${reserva.telefoneHospede}</p>
-          <p><strong>Tipo de Quarto:</strong> ${reserva.tipoQuarto}</p>
-          <p><strong>Check-in:</strong> ${reserva.checkIn}</p>
-          <p><strong>Check-out:</strong> ${reserva.checkOut}</p>
-          <p><strong>Dias:</strong> ${reserva.dias}</p>
-          <p><strong>Serviços Extras:</strong> ${reserva.servicosExtrasSelecionados.join(", ")}</p>
-          <p><strong>Custo Total:</strong> R$ ${reserva.custoTotal.toFixed(2)}</p>
+          <p id="name">Reserva de ${reserva._nomeHospede}</p>
+          <p><strong>Telefone:</strong> ${reserva._telefoneHospede}</p>
+          <p><strong>Tipo de Quarto:</strong> ${reserva._tipoQuarto}</p>
+          <p><strong>Check-in:</strong> ${reserva._checkIn}</p>
+          <p><strong>Check-out:</strong> ${reserva._checkOut}</p>
+          <p><strong>Dias:</strong> ${reserva._dias}</p>
+          <p><strong>Serviços Extras:</strong> ${reserva._servicosExtrasSelecionados.join(", ")}</p>
+          <p><strong>Custo Total:</strong> R$ ${reserva._custoTotal.toFixed(2)}</p>
         </div>
       </div>
       <br>
