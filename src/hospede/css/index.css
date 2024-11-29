@@ -77,7 +77,7 @@ nav img {
 }
 
 .apresentacao {
-  background: url(https://triplover.com.br/wp-content/uploads/2019/09/Enjoy-Olimpia-Park-Resort.jpg);
+  background:linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0)), url(https://triplover.com.br/wp-content/uploads/2019/09/Enjoy-Olimpia-Park-Resort.jpg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
