@@ -118,7 +118,7 @@ document.getElementById("hospedes").addEventListener("submit", async function (e
 
 
   if (!validarCPF(cpf)) {
-    alert("CPF inválido! Tente novamente.");
+    alert("CPF inválido! Tente novamente");
     return;
   }
 
@@ -140,7 +140,7 @@ document.getElementById("hospedes").addEventListener("submit", async function (e
   }
 
   if(!validarSenha(senha)){
-    alert("Senha Fraça. Ela deve conter: 8 digitos, letra Grande, letra pequena, numero, caracter especial")
+    alert("Senha fraca. Ela deve conter 8 dígitos, letras maiúsculas, letras minúsculas, número e caracter especial")
     return;
   }
 
