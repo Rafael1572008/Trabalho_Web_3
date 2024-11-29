@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Verifica se o hóspede existe
     const hospedeEncontrado = lista_Hospedes.find(
-      (hospede) => hospede.email === emailLogin && hospede.senha === senhaLogin
+      (hospede) => hospede._email === emailLogin && hospede._senha === senhaLogin
     );
 
     // Verifica primeiro para hóspedes, depois verifica administradores
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       // Se não encontrar, verifica na lista de administradores
       const adminEncontrado = lista_Adm.find(
-        (adm) => adm._email === emailLogin && adm._password.toString() === senhaLogin
+        (adm) => adm._email === emailLogin && adm._password === senhaLogin
       );
 
       // Resultado
