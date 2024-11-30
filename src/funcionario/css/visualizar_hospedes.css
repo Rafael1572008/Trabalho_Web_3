@@ -14,7 +14,7 @@
   }
   
   main {
-    max-width: 600px;
+    max-width: 1000px;
     margin: 20px auto;
     margin-bottom: 200px;
     background: white;
@@ -89,8 +89,39 @@ header{
   text-align: center;
 }
 
-th{
-  position: relative;
-  right: 25px;
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
 }
-  
+
+th, td {
+  text-align: left;
+  padding: 10px;
+  border: 1px solid #ddd; /* Adiciona bordas às células */
+  word-wrap: break-word; /* Quebra o texto que ultrapassa o limite */
+}
+
+th {
+  background-color: #f4f4f4; /* Cor de fundo para o cabeçalho */
+}
+
+td:nth-child(1) {
+  width: 30%; /* Nome */
+}
+
+td:nth-child(2) {
+  width: 30%; /* CPF */
+}
+
+td:nth-child(3) {
+  width: 30%; /* Telefone */
+}
+
+td:nth-child(4) {
+  width: 30%; /* Email */
+}
+
+td:nth-child(5) {
+  width: 30%; /* Endereço */
+}
