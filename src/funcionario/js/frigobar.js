@@ -1,34 +1,45 @@
 const precos = {
-    refri: 5.0,   
-    agua: 3.0,   
-    cerveja: 7.0   
-  };
+  refri: 5.0,
+  agua: 3.0,
+  cerveja: 7.0,
+};
 
 document.getElementById("frigobar").addEventListener("submit", function (event) {
-    event.preventDefault();
-  
-    const nome = document.getElementById("nome").value.trim();
-    const cpf = document.getElementById("cpf").value.trim();
-    const refriQtd = document.getElementById("refri").value.trim();
-    const aguaQtd = document.getElementById("agua").value.trim();
-    const cervejaQtd = document.getElementById("cerveja").value.trim();
+  event.preventDefault();
 
-    let total = 0
+  const nome = document.getElementById("nome").value.trim();
+  const cpf = document.getElementById("cpf").value.trim();
+  const refriQtd = parseInt(document.getElementById("refri").value.trim()) || 0;
+  const aguaQtd = parseInt(document.getElementById("agua").value.trim()) || 0;
+  const cervejaQtd = parseInt(document.getElementById("cerveja").value.trim()) || 0;
 
-    if (refriQtd > 0) {
-        total+=(refriQtd * refri)
-    }
-    if (aguaQtd > 0) {
-        total+=(aguaQtd * agua)
-    }
-    if (cervejaQtdQtd > 0) {
-        total+=(cervejaQtd * cerveja)
-    }
+  // Calcula o total do consumo
+  let total = 0;
+  total += refriQtd * precos.refri;
+  total += aguaQtd * precos.agua;
+  total += cervejaQtd * precos.cerveja;
 
-    const consumo_hospede = { nome, cpf, total_consumo};
+  if (total === 0) {
+    alert("Adicione ao menos um item ao consumo!");
+    return;
+  }
+
+  let lista_Hospedes = JSON.parse(localStorage.getItem("frigobar")) || [];
   
-    let lista_Hospedes = JSON.parse(localStorage.getItem("frigobar")) || [];
-    lista_Hospedes.push(consumo_hospede);
-    localStorage.setItem("frigobar", JSON.stringify(lista_Hospedes));
-  });
-  
+  // Verifica se o hóspede com o CPF já existe
+  const hospedeIndex = lista_Hospedes.findIndex(hospede => hospede.cpf === cpf);
+
+  if (hospedeIndex !== -1) {
+    // Atualiza o consumo do hóspede existente
+    lista_Hospedes[hospedeIndex].total_consumo += total;
+  } else {
+    // Adiciona um novo hóspede com o consumo
+    lista_Hospedes.push({ nome, cpf, total_consumo: total });
+  }
+
+  // Salva a lista atualizada no localStorage
+  localStorage.setItem("frigobar", JSON.stringify(lista_Hospedes));
+
+  alert("Consumo adicionado com sucesso!");
+  document.getElementById("frigobar").reset();
+});
