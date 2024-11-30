@@ -112,7 +112,7 @@ document.getElementById("hospedes").addEventListener("submit", async function (e
 
   // Executando validações
   if (!validarNOME(nome)) {
-    alert("Nome Inválido! Tente novamente");
+    alert("Nome inválido! Tente novamente");
     return;
   }
 
@@ -124,23 +124,23 @@ document.getElementById("hospedes").addEventListener("submit", async function (e
 
   // Exemplo: (11) 9NNNN-NNNN ou (11) NNNN-NNNN  // Exemplo: (11) 9NNNN-NNNN ou (11) NNNN-NNNN
   if (!validarTelefone(telefone)) {
-    alert("Telefone Inválido! Tente novamente");
+    alert("Telefone inválido! Tente novamente");
     return;
   }
 
   // Apenas 'gmail.com', 'hotmail.com', 'outlook.com', 'yahoo.com'
   if (!validarEmail(email)) {
-    alert("Email Inválido! Tente novamente");
+    alert("E-mail inválido! Tente novamente");
     return;
   }
 
   if (!(await validarEndereco(endereco))) {
-    alert("Endereço Inválido! Tente novamente");
+    alert("Endereço inválido! Tente novamente");
     return;
   }
 
   if(!validarSenha(senha)){
-    alert("Senha fraca. Ela deve conter 8 dígitos, letras maiúsculas, letras minúsculas, número e caracter especial")
+    alert("Senha fraca! Por favor, crie uma senha forte seguindo as estas diretrizes: Mínimo de 8 caracteres, Pelo menos uma letra maiúscula e uma minúscula, Inclua pelo menos um número, Adicione pelo menos um caractere especial, Evite sequências óbvias ou informações pessoais. Sua segurança é importante para nós! ")
     return;
   }
 

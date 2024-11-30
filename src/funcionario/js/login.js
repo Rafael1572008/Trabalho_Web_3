@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
         alert("Login efetuado com sucesso");
         window.location.href = "../funcionario/painel.html"; // Redireciona para a página do funcionário
       } else {
-        alert("Email ou senha incorretos!");
+        alert("E-mail ou senha incorretos!");
         console.log("Lista de hóspedes:", lista_Hospedes);
         console.log("Lista de administradores:", lista_Adm);
       }
