@@ -164,7 +164,7 @@ document.addEventListener("DOMContentLoaded", function () {
       custo.textContent = `Custo Total: R$${reserva._custoTotal.toFixed(2)}`;
       div.appendChild(custo);
 
-      listaReservas.appendChild(div); // Adiciona a reserva à lista de reservas
+      listaReservas.appendChild(); // Adiciona a reserva à lista de reservas
     });
   }
 });
