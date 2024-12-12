@@ -6,14 +6,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   class Pagamento {
     constructor(nomeHospede, telefoneHospede, tipoQuarto, checkIn, checkOut, dias, servicosExtrasSelecionados, custoTotal) {
-      this.nomeHospede = nomeHospede;
-      this.telefoneHospede = telefoneHospede;
-      this.tipoQuarto = tipoQuarto;
-      this.checkIn = checkIn;
-      this.checkOut = checkOut;
-      this.dias = dias;
-      this.servicosExtrasSelecionados = servicosExtrasSelecionados.length > 0 ? servicosExtrasSelecionados.join(", ") : "Nenhum";
-      this.custoTotal = custoTotal;
+      this._nomeHospede = nomeHospede;
+      this._telefoneHospede = telefoneHospede;
+      this._tipoQuarto = tipoQuarto;
+      this._checkIn = checkIn;
+      this._checkOut = checkOut;
+      this._dias = dias;
+      this._servicosExtrasSelecionados = servicosExtrasSelecionados.length > 0 ? servicosExtrasSelecionados.join(", ") : "Nenhum";
+      this._custoTotal = custoTotal;
     }
   }
 
@@ -35,14 +35,14 @@ document.addEventListener("DOMContentLoaded", function () {
       div.classList.add("pagamento");
 
       div.innerHTML = `
-        <p><strong>Hóspede:</strong> ${pagamento.nomeHospede}</p>
-        <p><strong>Telefone:</strong> ${pagamento.telefoneHospede}</p>
-        <p><strong>Tipo de Quarto:</strong> ${pagamento.tipoQuarto}</p>
-        <p><strong>Check-In:</strong> ${pagamento.checkIn}</p>
-        <p><strong>Check-Out:</strong> ${pagamento.checkOut}</p>
-        <p><strong>Dias de Estadia:</strong> ${pagamento.dias}</p>
-        <p><strong>Serviços Extras:</strong> ${pagamento.servicosExtrasSelecionados}</p>
-        <p><strong>Custo Total:</strong> R$${pagamento.custoTotal.toFixed(2)}</p>
+        <p><strong>Hóspede:</strong> ${pagamento._nomeHospede}</p>
+        <p><strong>Telefone:</strong> ${pagamento._telefoneHospede}</p>
+        <p><strong>Tipo de Quarto:</strong> ${pagamento._tipoQuarto}</p>
+        <p><strong>Check-In:</strong> ${pagamento._checkIn}</p>
+        <p><strong>Check-Out:</strong> ${pagamento._checkOut}</p>
+        <p><strong>Dias de Estadia:</strong> ${pagamento._dias}</p>
+        <p><strong>Serviços Extras:</strong> ${pagamento._servicosExtrasSelecionados}</p>
+        <p><strong>Custo Total:</strong> R$${pagamento._custoTotal.toFixed(2)}</p>
       `;
 
       listaPagamentos.appendChild(div);
