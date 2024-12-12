@@ -30,7 +30,9 @@
 <! Lembra da API >
 
 # Pessoas Desenvolvedoras do Projeto
-<! Sara, Kaio, Hideki >
+| [<img loading="lazy" src="https://avatars.githubusercontent.com/u/183084332?v=4" width=115><br><sub>Duda</sub>](https://github.com/Sunieee9) |  [<img loading="lazy" src="https://avatars.githubusercontent.com/u/127984148?v=4" width=115><br><sub>Rafael</sub>](https://github.com/Rafael1572008) |
+| :---: | :---: |
+
 
 # Conclusão
 <! Conclusão >
