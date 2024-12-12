@@ -30,7 +30,7 @@
 <! Lembra da API >
 
 # Pessoas Desenvolvedoras do Projeto
-| [<img loading="lazy" src="[https://avatars.githubusercontent.com/u/183084332?v=4](https://avatars.githubusercontent.com/u/128601265?v=4)" width=115><br><sub>Msteus do skate</sub>]([https://github.com/Sunieee9)](https://github.com/Mateus-Hideki) |  [<img loading="lazy" src="https://avatars.githubusercontent.com/u/127984148?v=4" width=115><br><sub>Rafael</sub>](https://github.com/Rafael1572008) |
+| [<img loading="lazy" src="https://avatars.githubusercontent.com/u/128601265?v=4" width=115><br><sub>Mateus</sub>](https://github.com/Mateus-Hideki) |  [<img loading="lazy" src="https://avatars.githubusercontent.com/u/127984148?v=4" width=115><br><sub>Rafael</sub>](https://github.com/Rafael1572008) |
 | :---: | :---: |
 
 
