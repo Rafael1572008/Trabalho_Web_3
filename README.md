@@ -9,7 +9,6 @@
 # Índice 
 
 * [Título](#Título-e-Imagem-de-capa)
-* [Badges](#badges)
 * [Índice](#índice)
 * [Descrição do Projeto](#descrição-do-projeto)
 * [Status do Projeto](#status-do-Projeto)
