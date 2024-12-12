@@ -30,7 +30,7 @@
 <! Lembra da API >
 
 # Pessoas Desenvolvedoras do Projeto
-| [<img loading="lazy" src="https://avatars.githubusercontent.com/u/128601265?v=4" width=115><br><sub>Mateus</sub>](https://github.com/Mateus-Hideki) |  [<img loading="lazy" src="https://avatars.githubusercontent.com/u/132790635?v=4" width=115><br><sub>Kaio</sub>](https://github.com/KaioDamasceno) | [<img loading="lazy" src="https://avatars.githubusercontent.com/u/128601286?v=4" width=115><br><sub>Sara</sub>]https://github.com/sarmart) |
+| [<img loading="lazy" src="https://avatars.githubusercontent.com/u/128601265?v=4" width=115><br><sub>Mateus</sub>](https://github.com/Mateus-Hideki) |  [<img loading="lazy" src="https://avatars.githubusercontent.com/u/132790635?v=4" width=115><br><sub>Kaio</sub>](https://github.com/KaioDamasceno) | [<img loading="lazy" src="https://avatars.githubusercontent.com/u/128601286?v=4" width=115><br><sub>Sara</sub>](https://github.com/sarmart) |
 | :---: | :---: | :---: |
 
 
