@@ -47,8 +47,6 @@ document.addEventListener("DOMContentLoaded", function () {
       const checkIn = formReserva["checkIn"].value;
       const checkOut = formReserva["checkOut"].value;
 
-
-
       // Verificações
       function validarNOME(nomeHospede) {
         const nomev = nomeHospede.replace(/[^a-zA-Zá-úÁ-Ú\s]/g, '');
@@ -60,8 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return tel.length === 10 || tel.length === 11;
       }
 
-
-      // Execultando os verificadoderes
+      // Executando os verificadores
       if (!validarNOME(nomeHospede)) {
         alert("Nome Inválido! Tente novamente");
         return;
@@ -79,8 +76,6 @@ document.addEventListener("DOMContentLoaded", function () {
         alert("A data de check-out deve ser posterior à data de check-in.");
         return;
       }
-
-
 
       const servicosExtrasSelecionados = Array.from(
         formReserva.querySelectorAll('input[name="servico-extra"]:checked')
@@ -164,7 +159,7 @@ document.addEventListener("DOMContentLoaded", function () {
       custo.textContent = `Custo Total: R$${reserva._custoTotal.toFixed(2)}`;
       div.appendChild(custo);
 
-      listaReservas.appendChild(); // Adiciona a reserva à lista de reservas
+      listaReservas.appendChild(div); // Adiciona a reserva à lista de reservas
     });
   }
 });
