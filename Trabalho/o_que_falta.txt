@@ -1,0 +1,23 @@
+Pensar:
+Adicionar Quarto e reserva
+Frigobar
+
+
+WEB 1:
+Dar ultilidade à cadastro quarto
+arrumar css de painel
+Arrumar frigobar
+Validar todas as entradas
+arrumar folha de pagamento
+Arrumar Folha de pagamento
+Deixar Pagamento em POO com encapsulamento
+Implementar histórico de reservas
+
+Atualizar documentação
+incluir exeplos de e explicações da POO
+
+
+
+SGDS:
+
+PDF no Moodle
