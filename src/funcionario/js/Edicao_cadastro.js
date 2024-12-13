@@ -56,7 +56,6 @@ document.addEventListener("DOMContentLoaded", function () {
   function editarHospede(hospede, lista_Hospedes) {
     // Preenche o formulário de edição com os dados do hóspede
     document.getElementById("nome").value = hospede._nome;
-    document.getElementById("cpf").value = hospede._cpf;
     document.getElementById("telefone").value = hospede._telefone;
     document.getElementById("email").value = hospede._email;
     document.getElementById("endereco").value = hospede._endereco;

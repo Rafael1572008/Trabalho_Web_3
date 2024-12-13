@@ -69,7 +69,7 @@ document.getElementById("hospedes").addEventListener("submit", async function (e
   
 
   // Validação de Telefone
-    function validarTelefone(telefone) {
+  function validarTelefone(telefone) {
     const tel = telefone.replace(/[^0-9]/g, '');
     return tel.length === 10 || tel.length === 11;
   }

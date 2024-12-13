@@ -51,12 +51,62 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
+
+      // Verificações
+      function validarNOME(nome) {
+        const nomev = nome.replace(/[^a-zA-Zá-úÁ-Ú\s]/g, '');
+        return nomev === nome;
+      }
+
+      function validarTelefone(telefone) {
+        const tel = telefone.replace(/[^0-9]/g, '');
+        return tel.length === 10 || tel.length === 11;
+      }
+
+      function valdiarData(checkIn, checkOut) {
+        const dataAtual = new Date(); // chamar a data de hoje
+        const dataCheckIn = new Date(checkIn); // converter
+        const dataCheckOut = new Date(checkOut);  // converter
+      
+      
+        if (dataCheckIn < dataAtual) {
+          alert("A data de check-in deve ser no futuro.");
+          return false;
+        }
+      
+        if (dataCheckOut <= dataCheckIn) {
+          alert("A data de check-out deve ser posterior à data de check-in.");
+          return false;
+        }
+      
+        return true;
+      }
+      
+      
+
       // Buscar o quarto escolhido pelo número
       const quartoEscolhido = quartos.find((quarto) => quarto._numero === numeroQuarto);
       if (!quartoEscolhido) {
         alert("Quarto não encontrado!");
         return;
       }
+
+      // Execultar validações
+      if (!validarNOME(nomeHospede)) {
+        alert("Nome inválido! Tente novamente");
+        return;
+      }
+
+      if (!validarTelefone(telefoneHospede)) {
+        alert("Telefone inválido! Tente novamente");
+        return;
+      }
+
+      if(!valdiarData(checkIn, checkOut)) {
+        return;
+      }
+
+
 
       const servicosExtrasSelecionados = Array.from(
         formReserva.querySelectorAll('input[name="servico-extra"]:checked')
