@@ -4,7 +4,9 @@ Frigobar
 
 
 WEB 1:
-Dar ultilidade à cadastro quarto
+
+Fazer um outro localstorage para pessoas no hotel, diferencia da lista de hospedes cadastrados
+
 arrumar css de painel
 Arrumar frigobar
 Validar todas as entradas
