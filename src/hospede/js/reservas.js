@@ -1,16 +1,30 @@
 document.addEventListener("DOMContentLoaded", function () {
   const formReserva = document.getElementById("form-reserva");
   const listaReservas = document.getElementById("lista-reservas");
+  const numeroQuartoSelect = document.getElementById("numero-quarto");
 
   const reservas = JSON.parse(localStorage.getItem("reservas")) || [];
+  const quartos = JSON.parse(localStorage.getItem("quartos")) || [];
   atualizarListaReservas();
 
-  // Classe Reserva
+  // Função para carregar os números dos quartos disponíveis no select
+  function carregarQuartosDisponiveis() {
+    numeroQuartoSelect.innerHTML = '<option value="">Selecione o número do quarto</option>'; // Limpar opções anteriores
+    quartos.forEach((quarto) => {
+      const option = document.createElement("option");
+      option.value = quarto._numero;
+      option.textContent = `Quarto ${quarto._numero} (${quarto._tipo}): R$${quarto._preco}`;
+      numeroQuartoSelect.appendChild(option);
+    });
+  }
+
+  carregarQuartosDisponiveis();
+
   class Reserva {
-    constructor(nomeHospede, telefoneHospede, tipoQuarto, checkIn, checkOut, dias, servicosExtrasSelecionados, custoTotal) {
+    constructor(nomeHospede, telefoneHospede, numeroQuarto, checkIn, checkOut, dias, servicosExtrasSelecionados, custoTotal) {
       this._nomeHospede = nomeHospede;
       this._telefoneHospede = telefoneHospede;
-      this._tipoQuarto = tipoQuarto;
+      this._numeroQuarto = numeroQuarto;
       this._checkIn = checkIn;
       this._checkOut = checkOut;
       this._dias = dias;
@@ -19,61 +33,28 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Preços dos quartos
-  const preco = {
-    "Duplo Solteiro": 120,
-    "Quarto Casal": 200,
-    Dormitórios: 100,
-    Apartamentos: 250,
-    Standard: 180,
-    Master: 300,
-    "Deluxe ou Master Superior": 400,
-  };
-
-  // Preços dos serviços extras
-  const precoServicosExtras = {
-    Lavanderia: 50,
-    Massagem: 120,
-    Restaurante: 70,
-  };
-
   if (formReserva) {
     formReserva.addEventListener("submit", function (event) {
       event.preventDefault();
 
       const nomeHospede = formReserva["nomeHospede"].value;
       const telefoneHospede = formReserva["telefoneHospede"].value;
-      const tipoQuarto = formReserva["tipoQuarto"].value;
+      const numeroQuarto = formReserva["numeroQuarto"].value; // Número do quarto selecionado
       const checkIn = formReserva["checkIn"].value;
       const checkOut = formReserva["checkOut"].value;
-
-      // Verificações
-      function validarNOME(nomeHospede) {
-        const nomev = nomeHospede.replace(/[^a-zA-Zá-úÁ-Ú\s]/g, '');
-        return nomev === nomeHospede;
-      }
-
-      function validarTelefone(telefoneHospede) {
-        const tel = telefoneHospede.replace(/[^0-9]/g, '');
-        return tel.length === 10 || tel.length === 11;
-      }
-
-      // Executando os verificadores
-      if (!validarNOME(nomeHospede)) {
-        alert("Nome Inválido! Tente novamente");
-        return;
-      }
-
-      if (!validarTelefone(telefoneHospede)) {
-        alert("Telefone Inválido! Tente novamente");
-        return;
-      }
 
       const dataCheckIn = new Date(checkIn);
       const dataCheckOut = new Date(checkOut);
 
       if (dataCheckOut <= dataCheckIn) {
         alert("A data de check-out deve ser posterior à data de check-in.");
+        return;
+      }
+
+      // Buscar o quarto escolhido pelo número
+      const quartoEscolhido = quartos.find((quarto) => quarto._numero === numeroQuarto);
+      if (!quartoEscolhido) {
+        alert("Quarto não encontrado!");
         return;
       }
 
@@ -85,7 +66,12 @@ document.addEventListener("DOMContentLoaded", function () {
         Math.abs(dataCheckOut - dataCheckIn) / (1000 * 60 * 60 * 24)
       );
 
-      const custoQuarto = (preco[tipoQuarto] || 0) * dias;
+      const custoQuarto = quartoEscolhido._preco * dias;
+      const precoServicosExtras = {
+        Lavanderia: 50,
+        Massagem: 120,
+        Restaurante: 70,
+      };
       const custoServicosExtras = servicosExtrasSelecionados.reduce(
         (total, servico) => total + (precoServicosExtras[servico] || 0),
         0
@@ -93,11 +79,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const custoTotal = custoQuarto + custoServicosExtras;
 
-      // Criando a reserva usando a classe
       const reserva = new Reserva(
         nomeHospede,
         telefoneHospede,
-        tipoQuarto,
+        numeroQuarto,
         checkIn,
         checkOut,
         dias,
@@ -105,16 +90,22 @@ document.addEventListener("DOMContentLoaded", function () {
         custoTotal
       );
 
-      // Adicionando a reserva ao array de reservas
       reservas.push(reserva);
       localStorage.setItem("reservas", JSON.stringify(reservas));
 
+      // Remover o quarto reservado da lista de quartos
+      const indexQuarto = quartos.findIndex((quarto) => quarto._numero === numeroQuarto);
+      if (indexQuarto !== -1) {
+        quartos.splice(indexQuarto, 1);
+        localStorage.setItem("quartos", JSON.stringify(quartos));
+      }
+
       atualizarListaReservas();
+      carregarQuartosDisponiveis(); // Atualizar o select com os quartos disponíveis
       formReserva.reset();
     });
   }
 
-  // Função para atualizar a lista de reservas na página
   function atualizarListaReservas() {
     listaReservas.innerHTML = "";
 
@@ -123,7 +114,6 @@ document.addEventListener("DOMContentLoaded", function () {
       div.classList.add("reserva");
 
       const hospede = document.createElement("p");
-      hospede.classList.add("nome-hospede");
       hospede.textContent = `Hóspede: ${reserva._nomeHospede}`;
       div.appendChild(hospede);
 
@@ -131,9 +121,9 @@ document.addEventListener("DOMContentLoaded", function () {
       telefone.textContent = `Telefone: ${reserva._telefoneHospede}`;
       div.appendChild(telefone);
 
-      const tipo = document.createElement("p");
-      tipo.textContent = `Tipo de Quarto: ${reserva._tipoQuarto}`;
-      div.appendChild(tipo);
+      const numero = document.createElement("p");
+      numero.textContent = `Número do Quarto: ${reserva._numeroQuarto}`;
+      div.appendChild(numero);
 
       const checkin = document.createElement("p");
       checkin.textContent = `Check-In: ${reserva._checkIn}`;
@@ -159,7 +149,7 @@ document.addEventListener("DOMContentLoaded", function () {
       custo.textContent = `Custo Total: R$${reserva._custoTotal.toFixed(2)}`;
       div.appendChild(custo);
 
-      listaReservas.appendChild(div); // Adiciona a reserva à lista de reservas
+      listaReservas.appendChild(div);
     });
   }
 });
