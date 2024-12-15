@@ -113,9 +113,10 @@ nav img {
 
 .blox {
   display: flex;
-  gap: 30px; /* Espaçamento entre os blocos */
+  gap: 75px; /* Espaçamento entre os blocos */
   height: 500px;
-  margin: 0px 10px 0px 10px;
+  margin-left: 100px;
+  margin-right: 100px;
   font-family: Arial, Helvetica, sans-serif;
   margin-bottom: 50px;
   color: gray;
