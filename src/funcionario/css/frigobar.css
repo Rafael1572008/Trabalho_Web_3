@@ -67,8 +67,9 @@
     color: white;
     clear: both;
     display: flex;
+    max-height: 100px;
     justify-content: center;
-    padding: 3%;
+    padding: 2%;
     font-size: large;
   }
   
@@ -77,7 +78,6 @@
     max-width: 2000px;
     padding: 1%;
     margin: 0 auto;
-    max-height: 110px;
     display: flex;
     justify-content: flex-end;
   }
