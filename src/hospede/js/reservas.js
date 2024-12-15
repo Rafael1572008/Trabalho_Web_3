@@ -7,21 +7,21 @@ document.addEventListener("DOMContentLoaded", function () {
   const quartos = JSON.parse(localStorage.getItem("quartos")) || [];
   atualizarListaReservas();
 
-  // Função para carregar os números dos quartos disponíveis no select
   function carregarQuartosDisponiveis() {
     numeroQuartoSelect.innerHTML = '<option value="">Selecione o número do quarto</option>'; // Limpar opções anteriores
     quartos.forEach((quarto) => {
       const option = document.createElement("option");
       option.value = quarto._numero;
-      option.textContent = `Quarto ${quarto._numero} (${quarto._tipo}): R$${quarto._preco}`;
+      option.textContent = `Quarto ${quarto._numero} (${quarto._tipo}): R$${quarto._preco} por noite`;
       numeroQuartoSelect.appendChild(option);
     });
+    
   }
 
   carregarQuartosDisponiveis();
 
   class Reserva {
-    constructor(nomeHospede, telefoneHospede, numeroQuarto, checkIn, checkOut, dias, servicosExtrasSelecionados, custoTotal) {
+    constructor(nomeHospede, telefoneHospede, numeroQuarto, checkIn, checkOut, dias, servicosExtrasSelecionados, refri, agua, cerveja, custoTotal) {
       this._nomeHospede = nomeHospede;
       this._telefoneHospede = telefoneHospede;
       this._numeroQuarto = numeroQuarto;
@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
       this._checkOut = checkOut;
       this._dias = dias;
       this._servicosExtrasSelecionados = servicosExtrasSelecionados;
+      this._frigobar = { refri, agua, cerveja };
       this._custoTotal = custoTotal;
     }
   }
@@ -42,6 +43,9 @@ document.addEventListener("DOMContentLoaded", function () {
       const numeroQuarto = formReserva["numeroQuarto"].value; // Número do quarto selecionado
       const checkIn = formReserva["checkIn"].value;
       const checkOut = formReserva["checkOut"].value;
+      const refri = parseInt(formReserva["refri"].value) || 0;
+      const agua = parseInt(formReserva["agua"].value) || 0;
+      const cerveja = parseInt(formReserva["cerveja"].value) || 0;
 
       const dataCheckIn = new Date(checkIn);
       const dataCheckOut = new Date(checkOut);
@@ -51,8 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
-
-      // Verificações
+      // Execultar validações
       function validarNOME(nome) {
         const nomev = nome.replace(/[^a-zA-Zá-úÁ-Ú\s]/g, '');
         return nomev === nome;
@@ -81,8 +84,6 @@ document.addEventListener("DOMContentLoaded", function () {
       
         return true;
       }
-      
-      
 
       // Buscar o quarto escolhido pelo número
       const quartoEscolhido = quartos.find((quarto) => quarto._numero === numeroQuarto);
@@ -105,8 +106,6 @@ document.addEventListener("DOMContentLoaded", function () {
       if(!valdiarData(checkIn, checkOut)) {
         return;
       }
-
-
 
       const servicosExtrasSelecionados = Array.from(
         formReserva.querySelectorAll('input[name="servico-extra"]:checked')
@@ -137,6 +136,9 @@ document.addEventListener("DOMContentLoaded", function () {
         checkOut,
         dias,
         servicosExtrasSelecionados,
+        refri,
+        agua,
+        cerveja,
         custoTotal
       );
 
@@ -196,7 +198,7 @@ document.addEventListener("DOMContentLoaded", function () {
       div.appendChild(servicosExtras);
 
       const custo = document.createElement("p");
-      custo.textContent = `Custo Total: R$${reserva._custoTotal.toFixed(2)}`;
+      custo.textContent = `Custo Total: R$${reserva._custoTotal}`;
       div.appendChild(custo);
 
       listaReservas.appendChild(div);

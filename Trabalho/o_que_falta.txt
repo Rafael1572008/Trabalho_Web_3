@@ -5,8 +5,6 @@ Frigobar
 
 WEB 1:
 
-Fazer um outro localstorage para pessoas no hotel, diferencia da lista de hospedes cadastrados
-
 arrumar css de painel
 Arrumar frigobar
 Validar todas as entradas
