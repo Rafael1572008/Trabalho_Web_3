@@ -41,6 +41,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Verifica primeiro para hóspedes, depois verifica administradores
     if (hospedeEncontrado) {
+      // Salvar sessão para hóspede
+      sessionStorage.setItem("isLoggedIn", true);
+      sessionStorage.setItem("userRole", "hospede");
+      sessionStorage.setItem("userEmail", hospedeEncontrado._email);
       alert("Login efetuado com sucesso");
       window.location.href = "../hospede/hospede.html"; // Redireciona para a página do hóspede
     } else {
@@ -51,9 +55,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Resultado
       if (adminEncontrado) {
+        // Salvar sessão para administrador
+        sessionStorage.setItem("isLoggedIn", true);
+        sessionStorage.setItem("userRole", "admin");
+        sessionStorage.setItem("userEmail", adminEncontrado._email);
         alert("Login efetuado com sucesso");
         window.location.href = "../funcionario/painel.html"; // Redireciona para a página do funcionário
       } else {
+        // Caso nenhum usuário seja encontrado
         alert("E-mail ou senha incorretos!");
         console.log("Lista de hóspedes:", lista_Hospedes);
         console.log("Lista de administradores:", lista_Adm);
