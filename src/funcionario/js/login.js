@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
         sessionStorage.setItem("userRole", "admin");
         sessionStorage.setItem("userEmail", adminEncontrado._email);
         alert("Login de Administrador efetuado com sucesso");
-        window.location.href = "../admin/admin.html";
+        window.location.href = "./painel.html";
       } else {
         alert("Email ou senha incorretos!");
       }
