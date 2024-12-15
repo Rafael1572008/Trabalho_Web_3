@@ -1,7 +1,7 @@
 document.getElementById("hospedes").addEventListener("submit", async function (event) {
   event.preventDefault();
 
-  // Criar objeto hospede
+  // Criação do objeto hospede
   class Hospede {
     constructor() {
       this._nome = null;
@@ -21,6 +21,15 @@ document.getElementById("hospedes").addEventListener("submit", async function (e
       this._endereco = endereco;
       this._senha = senha;
     }
+  }
+
+  // Função para criptografar a senha usando SHA-256
+  async function encryptCodigo(codigo) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(codigo);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
   }
 
   // Obtendo os dados do formulário
@@ -66,7 +75,6 @@ document.getElementById("hospedes").addEventListener("submit", async function (e
 
     return digito1 === parseInt(cpf[9]) && digito2 === parseInt(cpf[10]);
   }
-  
 
   // Validação de Telefone
   function validarTelefone(telefone) {
@@ -76,39 +84,33 @@ document.getElementById("hospedes").addEventListener("submit", async function (e
 
   // Validação de Email
   function validarEmail(email) {
-    
     const dominiosPermitidos = ['gmail.com', 'hotmail.com', 'outlook.com', 'yahoo.com'];
-
-    
-    const dominio = email.split('@')[1];  // Obtém o domínio após o "@", fatiar
-    
+    const dominio = email.split('@')[1];
     if (dominio && dominiosPermitidos.includes(dominio)) {
-      return true;  // Email válido
+      return true;
     } else {
-      return false;  // Email inválido
+      return false;
     }
   }
 
-  // Validação de Endereço (usou de assincrona por causa que a resposta Json pode demorar)
+  // Validação de Endereço
   async function validarEndereco(endereco) {
     endereco = endereco.replace(/ /g, '+');
-
-    const url = `https://nominatim.openstreetmap.org/search?q=${endereco}&format=json`; // Construção de url
-
+    const url = `https://nominatim.openstreetmap.org/search?q=${endereco}&format=json`;
     try {
       const response = await fetch(url);
       const data = await response.json();
       return data.length > 0;
     } catch (err) {
-      return false;   // Erro ao fazer a requisição
+      return false;
     }
   }
 
-  function validarSenha(senha) {   //Verifcar senha (Tem que ser forte)
+  // Função para validar senha
+  function validarSenha(senha) {  
     return senha.length >= 8 && /[A-Z]/.test(senha) && /[a-z]/.test(senha) && /\d/.test(senha) &&
            /[!@#$%^&*(),.?":{}|<>]/.test(senha);  
 }
-
 
   // Executando validações
   if (!validarNOME(nome)) {
@@ -116,19 +118,16 @@ document.getElementById("hospedes").addEventListener("submit", async function (e
     return;
   }
 
-
   if (!validarCPF(cpf)) {
     alert("CPF inválido! Tente novamente");
     return;
   }
 
-  // Exemplo: (11) 9NNNN-NNNN ou (11) NNNN-NNNN  // Exemplo: (11) 9NNNN-NNNN ou (11) NNNN-NNNN
   if (!validarTelefone(telefone)) {
     alert("Telefone inválido! Tente novamente");
     return;
   }
 
-  // Apenas 'gmail.com', 'hotmail.com', 'outlook.com', 'yahoo.com'
   if (!validarEmail(email)) {
     alert("E-mail inválido! Tente novamente");
     return;
@@ -139,14 +138,16 @@ document.getElementById("hospedes").addEventListener("submit", async function (e
     return;
   }
 
-  if(!validarSenha(senha)){
-    alert("Senha fraca! Por favor, crie uma senha forte seguindo as estas diretrizes: Mínimo de 8 caracteres, Pelo menos uma letra maiúscula e uma minúscula, Inclua pelo menos um número, Adicione pelo menos um caractere especial, Evite sequências óbvias ou informações pessoais. Sua segurança é importante para nós! ")
+  if (!validarSenha(senha)) {
+    alert("Senha fraca! Crie uma senha forte.");
     return;
   }
 
+  // Criptografando a senha
+  const senhaCriptografada = await encryptCodigo(senha);
 
   // Usando o set para alterar os valores dos atributos
-  hospede.setVerificado(nome, cpf, telefone, email, endereco, senha);
+  hospede.setVerificado(nome, cpf, telefone, email, endereco, senhaCriptografada);
 
   // Salvando no localStorage
   let lista_Hospedes = JSON.parse(localStorage.getItem("hospedes")) || [];
