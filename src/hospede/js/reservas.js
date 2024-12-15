@@ -194,7 +194,6 @@ document.addEventListener("DOMContentLoaded", function () {
       custo.textContent = `Custo Total: R$${reserva._custoTotal}`;
       div.appendChild(custo);
 
-      listaReservas.appendChild(div);
     });
   }
 });
