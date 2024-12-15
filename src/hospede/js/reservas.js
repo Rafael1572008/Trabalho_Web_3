@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
   carregarQuartosDisponiveis();
 
   class Reserva {
-    constructor(nomeHospede, telefoneHospede, numeroQuarto, checkIn, checkOut, dias, servicosExtrasSelecionados, refri, agua, cerveja, custoTotal) {
+    constructor(nomeHospede, telefoneHospede, numeroQuarto, checkIn, checkOut, dias, servicosExtrasSelecionados, custoTotal) {
       this._nomeHospede = nomeHospede;
       this._telefoneHospede = telefoneHospede;
       this._numeroQuarto = numeroQuarto;
@@ -29,7 +29,6 @@ document.addEventListener("DOMContentLoaded", function () {
       this._checkOut = checkOut;
       this._dias = dias;
       this._servicosExtrasSelecionados = servicosExtrasSelecionados;
-      this._frigobar = { refri, agua, cerveja };
       this._custoTotal = custoTotal;
     }
   }
@@ -43,9 +42,6 @@ document.addEventListener("DOMContentLoaded", function () {
       const numeroQuarto = formReserva["numeroQuarto"].value; // Número do quarto selecionado
       const checkIn = formReserva["checkIn"].value;
       const checkOut = formReserva["checkOut"].value;
-      const refri = parseInt(formReserva["refri"].value) || 0;
-      const agua = parseInt(formReserva["agua"].value) || 0;
-      const cerveja = parseInt(formReserva["cerveja"].value) || 0;
 
       const dataCheckIn = new Date(checkIn);
       const dataCheckOut = new Date(checkOut);
@@ -136,9 +132,6 @@ document.addEventListener("DOMContentLoaded", function () {
         checkOut,
         dias,
         servicosExtrasSelecionados,
-        refri,
-        agua,
-        cerveja,
         custoTotal
       );
 
