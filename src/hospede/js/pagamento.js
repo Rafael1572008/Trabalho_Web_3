@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
       this._custoTotal = custoTotal;
     }
   }
-
+  console.log(reservas.length)
   // Verifica se há reservas registradas
   if (reservas.length > 0) {
     reservas.forEach((reservaData) => {
