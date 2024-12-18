@@ -162,9 +162,9 @@ document.addEventListener("DOMContentLoaded", function () {
       carregarQuartosDisponiveis();
       formReserva.reset(); // Reseta o formulário
 
-      // Exibe mensagem de sucesso e redireciona para a página de pagamento
+      // Exibe mensagem de sucesso e redireciona para a página de visualização do total
       alert("Reserva realizada com sucesso!");
-      window.location.href = "../hospede/pagamento.html";
+      window.location.href = "../hospede/conta_total.html";
     });
   }
 

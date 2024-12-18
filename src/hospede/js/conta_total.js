@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
   const listaPagamentos = document.getElementById("lista-pagamentos");
-  const btnPagar = document.getElementById("btn-pagar");
 
   // Recupera as reservas do localStorage
   const reservas = JSON.parse(localStorage.getItem("reservas")) || [];
@@ -36,20 +35,12 @@ document.addEventListener("DOMContentLoaded", function () {
         <p><strong>Frigobar:</strong> Água (${frigobar.agua || 0}), 
           Cerveja (${frigobar.cerveja || 0}), 
           Refrigerante (${frigobar.refri || 0})</p>
-        <p><strong>Total:</strong> R$${custoTotalComFrigobar.toFixed(2)}</p>
+        <p><strong>Custo Total com Frigobar:</strong> R$${custoTotalComFrigobar.toFixed(2)}</p>
       `;
 
       listaPagamentos.appendChild(div);
     });
   } else {
-    listaPagamentos.innerHTML = "<p>Nenhum pagamento registrado.</p>";
+    listaPagamentos.innerHTML = "<p>Nenhuma reserva registrado.</p>";
   }
-
-  // Função para limpar a folha de pagamento e redirecionar
-  btnPagar.addEventListener("click", function () {
-    localStorage.removeItem("reservas"); // Remove reservas do localStorage
-    listaPagamentos.innerHTML = "<p>Nenhum pagamento registrado.</p>"; // Atualiza a exibição
-    alert("Pagamento realizado com sucesso!");
-    window.location.href = "../hospede/hospede.html"; // Redireciona para hospede.html
-  });
 });
