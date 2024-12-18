@@ -139,7 +139,7 @@ document.getElementById("hospedes").addEventListener("submit", async function (e
   }
 
   if (!validarSenha(senha)) {
-    alert("Senha fraca! Crie uma senha forte.");
+    alert("Senha inválida! A senha deve possuir letras maiusculas,  minúsculas, caracteres especiais e números.");
     return;
   }
 
