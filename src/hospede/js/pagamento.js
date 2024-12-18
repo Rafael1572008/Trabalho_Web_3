@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <p><strong>Frigobar:</strong> Água (${frigobar.agua || 0}), 
           Cerveja (${frigobar.cerveja || 0}), 
           Refrigerante (${frigobar.refri || 0})</p>
-        <p><strong>Custo Total com Frigobar:</strong> R$${custoTotalComFrigobar.toFixed(2)}</p>
+        <p><strong>Total:</strong> R$${custoTotalComFrigobar.toFixed(2)}</p>
       `;
 
       listaPagamentos.appendChild(div);
