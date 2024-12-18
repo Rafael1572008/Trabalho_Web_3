@@ -27,6 +27,7 @@ function atualizarReservas() {
             <p><strong>Dias:</strong> ${reserva._dias}</p>
             <p><strong>Serviços Extras:</strong> ${reserva._servicosExtrasSelecionados.join(", ")}</p>
             <p><strong>Custo Total:</strong> R$ ${reserva._custoTotal.toFixed(2)}</p>
+            <br>
             <button class="btn-checkout" data-index="${index}">Check-Out</button>
           </div>
         </div>
